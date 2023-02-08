@@ -7,14 +7,23 @@ namespace CatechismScrapper
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Hello, World!");
+
+            GetTableOfContents()
+                .ConvertToLinks()
+                .ConvertSitesToXmlDocuments()
+                .ConvertXmlDocumentsToObjects();
+        }
+
+        private static TableOfContents GetTableOfContents()
+        {
             var configRoot = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .Build();
 
             var config = new TableOfContents();
             configRoot.Bind(config);
-
-            Console.WriteLine("Hello, World!");
+            return config;
         }
     }
 }
