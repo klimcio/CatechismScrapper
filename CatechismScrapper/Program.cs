@@ -5,14 +5,13 @@ namespace CatechismScrapper
 {
     internal class Program
     {
-        static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
 
-            GetTableOfContents()
-                .ConvertToLinks()
-                .ConvertSitesToXmlDocuments()
-                .ConvertXmlDocumentsToObjects();
+            var toc = GetTableOfContents();
+
+            await toc.SaveToFilesAsync();
         }
 
         private static TableOfContents GetTableOfContents()
